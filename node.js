@@ -3,10 +3,10 @@ const fs = require('fs');
 const path = require('path');
 
 // Path to save the AppleScript output
-const outputFilePath = path.join(__dirname, 'output.txt');
+const outputFilePath = path.join(__dirname, 'gpt_transcript.txt');
 
 // Step 1: Run AppleScript and save the output to a file
-exec('osascript /path/to/your/script.scpt', (error, stdout, stderr) => {
+exec('osascript /path/to/your/gpt_script.applescript', (error, stdout, stderr) => {
     if (error) {
         console.error(`AppleScript execution error: ${error}`);
         return;
@@ -18,7 +18,7 @@ exec('osascript /path/to/your/script.scpt', (error, stdout, stderr) => {
             console.error(`Error writing output file: ${err}`);
             return;
         }
-        console.log('AppleScript output saved to output.txt');
+        console.log('AppleScript output saved to gpt_transcript.txt');
 
         // Step 2: After saving, read and process the output with JavaScript
         processAppleScriptOutput();

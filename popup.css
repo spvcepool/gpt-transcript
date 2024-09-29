@@ -1,11 +1,18 @@
 /* Step 1 */
+
+/* top: 0; left: 0; right: 0; bottom: 0;: These properties stretch the popup to 
+cover the entire viewport, effectively creating a full-screen overlay*/
 .popup {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    /* background: rgba(0, 0, 0, 0.5);: Sets a semi-transparent black background (50% opacity),
+     dimming the content behind the popup for better focus. */
     background: rgba(0, 0, 0, 0.5);
+    /* display: flex; justify-content: center; align-items: center;: Uses Flexbox to center the contents 
+    of the popup both vertically and horizontally. */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,15 +32,15 @@
     padding: 10px;
     border-radius: 5px;
 }
-
+/* Below it applies a light blue background color to messages sent by the user*/
 .user {
     background: #e0f7fa;
 }
-
+/* Below it applies a light pink background color to messages from GPT */
 .gpt {
     background: #fce4ec;
 }
-
+/* Below it adds space above the close button, separating it from the chat messages. */
 .close-btn {
     margin-top: 20px;
     padding: 10px;

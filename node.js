@@ -36,6 +36,12 @@ function processAppleScriptOutput() {
         // Process the AppleScript output (e.g., display it or use it in a web app)
         console.log('AppleScript Output:', data);
 
+        // Split the data by the '[break_message_convo]' tag
+        const messages = data.split('[break_message_convo]').map(message => message.trim()).filter(message => message.length > 0);
+
+        // Log the split messages
+        console.log('Split Messages:', messages);
+
         // Here, you could add your HTML/CSS/JavaScript logic to display the output.
         // Example: You could pass the output to a front-end web page or create a simple pop-up.
         // You can write the logic here to create your popup or UI as needed.

@@ -1,0 +1,55 @@
+<!-- Step 1 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Popup</title>
+    <style>
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .chat-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .user { background: #e0f7fa; }
+        .gpt { background: #fce4ec; }
+        .close-btn {
+            margin-top: 20px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <div class="chat-container" id="chat-container">
+            <!-- Messages will be inserted here -->
+        </div>
+        <button class="close-btn">Close</button>
+    </div>
+    <script>
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            window.close(); // Closes the popup window
+        });
+    </script>
+</body>
+</html>

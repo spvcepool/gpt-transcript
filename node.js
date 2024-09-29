@@ -33,20 +33,43 @@ function processAppleScriptOutput() {
             return;
         }
 
-        // Process the AppleScript output (e.g., display it or use it in a web app)
-        console.log('AppleScript Output:', data);
-
         // Split the data by the '[break_message_convo]' tag
-        const messages = data.split('[break_message_convo]').map(message => message.trim()).filter(message => message.length > 0);
+        const messages = data.split('[break_message_convo]')
+            .map(message => message.trim())
+            .filter(message => message.length > 0);
 
-        // Log the split messages
-        console.log('Split Messages:', messages);
+        // Format messages for display
+        const formattedMessages = messages.map(message => {
+            if (message.startsWith('[user_1_message]')) {
+                return `<div class="message user">${message.replace('[user_1_message]', '').trim()}</div>`;
+            } else if (message.startsWith('[gpt_1_message]')) {
+                return `<div class="message gpt">${message.replace('[gpt_1_message]', '').trim()}</div>`;
+            }
+            return ''; // In case of an unrecognized format
+        }).join('');
 
-        // Here, you could add your HTML/CSS/JavaScript logic to display the output.
-        // Example: You could pass the output to a front-end web page or create a simple pop-up.
-        // You can write the logic here to create your popup or UI as needed.
-
-        // Example of handling the output in Node.js, or you could pass it to a web app
-        // You can also use something like Electron.js to create a pop-up for better UI control
+        // Load the HTML template
+        displayPopup(formattedMessages);
     });
 }
+
+// Function to display the pop-up
+function displayPopup(formattedMessages) {
+    fs.readFile(path.join(__dirname, 'popup.html'), 'utf8', (err, htmlTemplate) => {
+        if (err) {
+            console.error(`Error reading popup HTML: ${err}`);
+            return;
+        }
+
+        // Insert formatted messages into the HTML
+        const populatedHTML = htmlTemplate.replace('<!-- Messages will be inserted here -->', formattedMessages);
+
+        // Open the populated HTML in a new window/tab
+        const popupWindow = window.open('', '_blank');
+        popupWindow.document.write(populatedHTML);
+        popupWindow.document.close(); // Necessary to finish writing the document
+    });
+}
+
+// Call the processing function
+processAppleScriptOutput();

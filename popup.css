@@ -1,48 +1,82 @@
-/* Step 1 */
-
-/* top: 0; left: 0; right: 0; bottom: 0;: These properties stretch the popup to 
-cover the entire viewport, effectively creating a full-screen overlay*/
+/* Popup overlay styles */
 .popup {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    /* background: rgba(0, 0, 0, 0.5);: Sets a semi-transparent black background (50% opacity),
-     dimming the content behind the popup for better focus. */
-    background: rgba(0, 0, 0, 0.5);
-    /* display: flex; justify-content: center; align-items: center;: Uses Flexbox to center the contents 
-    of the popup both vertically and horizontally. */
+    background: rgba(0, 0, 0, 0.9); /* Changed to a darker semi-transparent black */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Chat container styles */
 .chat-container {
     background: white;
     border-radius: 8px;
     padding: 20px;
-    width: 300px;
+    width: 90%; /* Make it responsive */
+    max-width: 400px; /* Limit max width */
     max-height: 80%;
     overflow-y: auto;
+    display: flex; /* Use flexbox for the message layout */
+    flex-direction: column; /* Stack messages vertically */
 }
 
+/* Message styles */
 .message {
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
+    max-width: 70%; /* Limit message width */
+    word-wrap: break-word; /* Allow long words to break */
 }
-/* Below it applies a light blue background color to messages sent by the user*/
+
+/* User message styles */
 .user {
     background: #e0f7fa;
+    align-self: flex-end; /* Align user messages to the right */
 }
-/* Below it applies a light pink background color to messages from GPT */
+
+/* GPT message styles */
 .gpt {
     background: #fce4ec;
+    align-self: flex-start; /* Align GPT messages to the left */
 }
-/* Below it adds space above the close button, separating it from the chat messages. */
+
+/* Label styles */
+.label {
+    font-weight: bold; /* Make the label bold */
+    margin-bottom: 5px; /* Space below the label */
+}
+
+/* Close button styles */
 .close-btn {
-    margin-top: 20px;
-    padding: 10px;
+    position: absolute; /* Position it absolutely */
+    top: 20px; /* Space from the top */
+    right: 20px; /* Space from the right */
+    padding: 12px 16px; /* Slightly larger padding */
     cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: red; /* Change background to red */
+    color: white;
+    font-size: 16px; /* Slightly larger text */
+    transition: background 0.3s; /* Smooth transition */
+}
+
+.close-btn:hover {
+    background: darkred; /* Darker red on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .chat-container {
+        width: 90%; /* Wider for small screens */
+    }
+
+    .message {
+        max-width: 90%; /* Wider messages for small screens */
+    }
 }

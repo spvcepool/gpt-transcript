@@ -1,0 +1,12 @@
+[break_message_convo]
+[user_1_message]
+user yap yap yap
+[break_message_convo]
+[gpt_1_message]
+gpt wise wise wise
+[break_message_convo]
+[user_1_message]
+user yap 2 yap 2 yap 2
+[break_message_convo]
+[gpt_1_message]
+gpt wise 2 wise 2 wise 2
